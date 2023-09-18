@@ -1,6 +1,6 @@
 import { User } from 'store/users/types'
 import { processGetUsers, processSetUserOptions } from "./processors"
-import { GetUsersResponse, SetUserOptionsResponse } from "./types"
+import { GetUserResponse, GetUsersResponse, SetUserOptionsResponse } from "./types"
 import { appFetch } from 'utils/api'
 
 export const getUsers = async () => {
@@ -8,6 +8,17 @@ export const getUsers = async () => {
         url: `https://jsonplaceholder.typicode.com/users`
     })
     const processed = processGetUsers(response)
+    
+    return processed
+}
+
+export const getUser = async ({ id }: Pick<User, 'id'>) => {
+    const response = await appFetch<GetUserResponse>({
+        url: `https://jsonplaceholder.typicode.com/users/${id}`
+    })
+    console.log({id});
+    
+    const processed = processGetUsers([response])
     
     return processed
 }

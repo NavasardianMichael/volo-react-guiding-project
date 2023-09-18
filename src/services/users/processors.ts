@@ -33,7 +33,7 @@ const processUserPartially = (response: SetUserOptionsResponse): UsersActionPayl
     return processed
 }
 
-const processUser = (response: UserResponse): User => {
+export const processUser = (response: UserResponse): User => {
     const processed = {
         id: response.id.toString(),
         name: response.name,

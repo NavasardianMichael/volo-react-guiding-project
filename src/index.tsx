@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from 'contexts/theme/Provider';
 import { StoreProvider } from 'store/main';
+import './index.css'
+import 'styles/commons.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
