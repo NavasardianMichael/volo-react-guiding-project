@@ -1,25 +1,30 @@
-import { useUserIdFromPath } from 'hooks/useUserIdFromPath'
-import { ChangeEventHandler, FC, FormEventHandler, useEffect, useState } from 'react'
-import { User as UserType } from 'store/users/types'
-import { useAppSelector } from 'hooks/useAppSelector'
-import { selectVisitedUser, selectVisitedUserId } from 'store/users/selectors'
-import { useAppDispatch } from 'hooks/useAppDispatch'
-import { getUserAsync, setUserOptionsAsync } from 'store/users/thunks'
-import { setVisitedUserId } from 'store/users/slice'
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from 'react'
 import styles from './styles.module.css'
+import { selectVisitedUser, selectVisitedUserId } from 'store/users/selectors'
+import { setVisitedUserId } from 'store/users/slice'
+import { getUserAsync, setUserOptionsAsync } from 'store/users/thunks'
+import { User as UserType } from 'store/users/types'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { useAppSelector } from 'hooks/useAppSelector'
+import { useUserIdFromPath } from 'hooks/useUserIdFromPath'
 
 type Props = {}
 
 export const EditableUser: FC<Props> = () => {
-
   const dispatch = useAppDispatch()
   const userIdFromPath = useUserIdFromPath()
   const visitedUserId = useAppSelector(selectVisitedUserId)
   const user = useAppSelector(selectVisitedUser)
-  
+
   const [values, setValues] = useState<Omit<UserType, 'id'>>({
     name: user?.name ?? '',
-    email: user?.email ?? ''
+    email: user?.email ?? '',
   })
 
   useEffect(() => {
@@ -27,17 +32,17 @@ export const EditableUser: FC<Props> = () => {
   }, [dispatch, userIdFromPath])
 
   useEffect(() => {
-    if(!visitedUserId) return
+    if (!visitedUserId) return
 
-    dispatch(getUserAsync({id: visitedUserId}))
+    dispatch(getUserAsync({ id: visitedUserId }))
   }, [dispatch, visitedUserId])
 
   useEffect(() => {
-    if(!user) return;
+    if (!user) return
 
     setValues({
       name: user.name,
-      email: user.email
+      email: user.email,
     })
   }, [user])
 
@@ -47,11 +52,13 @@ export const EditableUser: FC<Props> = () => {
     }
   }, [dispatch])
 
-  const handleChange = (fieldName: keyof Omit<UserType, 'id'>): ChangeEventHandler<HTMLInputElement> => {
+  const handleChange = (
+    fieldName: keyof Omit<UserType, 'id'>
+  ): ChangeEventHandler<HTMLInputElement> => {
     return (e) => {
-      setValues(prev => ({
+      setValues((prev) => ({
         ...prev,
-        [fieldName]: e.target.value
+        [fieldName]: e.target.value,
       }))
     }
   }
@@ -59,10 +66,12 @@ export const EditableUser: FC<Props> = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
 
-    dispatch(setUserOptionsAsync({
-      ...values,
-      id: user.id
-    }))
+    dispatch(
+      setUserOptionsAsync({
+        ...values,
+        id: user.id,
+      })
+    )
   }
 
   return (
@@ -71,7 +80,7 @@ export const EditableUser: FC<Props> = () => {
         <div className={styles.formControl}>
           <label htmlFor="user-name">Name</label>
           <input
-            id='user-name'
+            id="user-name"
             value={values.name}
             onChange={handleChange('name')}
           />
@@ -79,14 +88,12 @@ export const EditableUser: FC<Props> = () => {
         <div className={styles.formControl}>
           <label htmlFor="user-email">Email</label>
           <input
-            id='user-email'
+            id="user-email"
             value={values.email}
             onChange={handleChange('email')}
           />
         </div>
-        <button type='submit'>
-          Save
-        </button>
+        <button type="submit">Save</button>
       </form>
     </div>
   )
