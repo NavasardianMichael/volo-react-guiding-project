@@ -1,8 +1,5 @@
 import { RootState } from 'store/main';
-import { User } from './types';
 
 export const selectUsers = (state: RootState) => state.users
-
-export const selectUserById = (userId: User['id']) => {
-    return (state: RootState) => state.users.byId[userId]
-}
+export const selectVisitedUserId = (state: RootState) => state.users.visitedUserId
+export const selectVisitedUser = (state: RootState) => state.users.byId[state.users.visitedUserId]

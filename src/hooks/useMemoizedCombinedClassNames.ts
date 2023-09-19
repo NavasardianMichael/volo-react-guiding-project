@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { combineClassNames } from 'utils/commons'
+import { combineClassNames } from 'utils/styles'
 
 export const useMemoizedCombinedClassNames = (
     list: ReadonlyArray<string | undefined>, 

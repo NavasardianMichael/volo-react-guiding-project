@@ -1,6 +1,9 @@
 import { NormalizedShape } from 'types/commons'
 
-export type UsersSlice = NormalizedShape<User>
+export type UsersSlice = NormalizedShape<User> & {
+    visitedUserId: User['id']
+    isPending: boolean
+}
 
 export type User = {
     id: string
@@ -9,6 +12,7 @@ export type User = {
 }
 
 export type UsersActionPayloads = {
-    setUsers: UsersSlice
+    setUsers: Omit<UsersSlice, 'isPending'>
+    setVisitedUserId: User['id']
     setUserOptions: Pick<User, 'id'> & Partial<User>
 }

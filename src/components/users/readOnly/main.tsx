@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { User as UserType } from 'store/users/types'
 import { Link } from 'react-router-dom'
+import { combineClassNames } from 'utils/styles'
 import styles from './styles.module.css'
-import { combineClassNames } from 'utils/commons'
 
 type Props = {
   data: UserType

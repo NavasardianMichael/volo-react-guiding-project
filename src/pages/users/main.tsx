@@ -2,11 +2,9 @@ import { FC } from 'react'
 import { UsersList } from 'components/users/list/main'
 import styles from './styles.module.css'
 
-type Props = {
-  
-}
+type Props = {}
 
-const UsersPage: FC<Props> = ({  }) => {
+const UsersPage: FC<Props> = () => {
   return (
     <div className={styles.usersPage}>
       <UsersList />

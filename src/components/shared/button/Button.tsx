@@ -1,9 +1,7 @@
 import { FC } from 'react'
 import styles from './styles.module.css'
 
-type Props = {
-  
-}
+type Props = {}
 
 export const Button: FC<Props> = ({  }) => {
   return (

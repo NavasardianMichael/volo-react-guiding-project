@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { ThemeContextProvider } from 'contexts/theme/Provider';
+import { StoreProvider } from 'store/main';
+import { Router } from 'routes/RouterProvider';
 import styles from './app.module.css';
-import { router } from 'routes/router';
 
 export const App: FC = () => {
   return (
     <div className={styles.app}>
-      <RouterProvider router={router} />
+      <ThemeContextProvider>
+        <StoreProvider>
+          <Router />
+        </StoreProvider>
+      </ThemeContextProvider>
     </div>
   );
 }

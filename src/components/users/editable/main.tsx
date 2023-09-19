@@ -1,28 +1,36 @@
 import { useUserIdFromPath } from 'hooks/useUserIdFromPath'
 import { ChangeEventHandler, FC, FormEventHandler, useEffect, useState } from 'react'
 import { User as UserType } from 'store/users/types'
-import styles from './styles.module.css'
 import { useAppSelector } from 'hooks/useAppSelector'
-import { selectUserById } from 'store/users/selectors'
+import { selectVisitedUser, selectVisitedUserId } from 'store/users/selectors'
 import { useAppDispatch } from 'hooks/useAppDispatch'
-import { getUserAsync, getUsersAsync, setUserOptionsAsync } from 'store/users/thunks'
-import { useNavigate } from 'react-router-dom'
+import { getUserAsync, setUserOptionsAsync } from 'store/users/thunks'
+import { setVisitedUserId } from 'store/users/slice'
+import styles from './styles.module.css'
 
-type Props = {
+type Props = {}
 
-}
-
-export const EditableUser: FC<Props> = ({ }) => {
+export const EditableUser: FC<Props> = () => {
 
   const dispatch = useAppDispatch()
-  const navigate = useNavigate();
   const userIdFromPath = useUserIdFromPath()
-  const user = useAppSelector(selectUserById(userIdFromPath))
+  const visitedUserId = useAppSelector(selectVisitedUserId)
+  const user = useAppSelector(selectVisitedUser)
   
   const [values, setValues] = useState<Omit<UserType, 'id'>>({
-    name: user?.name,
-    email: user?.email
+    name: user?.name ?? '',
+    email: user?.email ?? ''
   })
+
+  useEffect(() => {
+    dispatch(setVisitedUserId(userIdFromPath))
+  }, [dispatch, userIdFromPath])
+
+  useEffect(() => {
+    if(!visitedUserId) return
+
+    dispatch(getUserAsync({id: visitedUserId}))
+  }, [dispatch, visitedUserId])
 
   useEffect(() => {
     if(!user) return;
@@ -34,8 +42,10 @@ export const EditableUser: FC<Props> = ({ }) => {
   }, [user])
 
   useEffect(() => {
-    dispatch(getUserAsync({id: userIdFromPath}))
-  }, [userIdFromPath])
+    return () => {
+      dispatch(setVisitedUserId(''))
+    }
+  }, [dispatch])
 
   const handleChange = (fieldName: keyof Omit<UserType, 'id'>): ChangeEventHandler<HTMLInputElement> => {
     return (e) => {

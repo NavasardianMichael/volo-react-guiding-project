@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
-import { combineReducers, configureStore, createAsyncThunk } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { usersSlice } from './users/slice'
 import { Provider } from 'react-redux'
 

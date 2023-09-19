@@ -12,17 +12,23 @@ function isRejectedAction(action: AnyAction): action is RejectedAction {
 
 const initialState: UsersSlice = {
     byId: {},
-    allIds: []
+    allIds: [],
+    visitedUserId: '',
+    isPending: false
 }
 
 export const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
-        setUsers: (_, { payload }: PayloadAction<UsersActionPayloads['setUsers']>) => {
-            console.log({payload});
-            
-            return payload
+        setUsers: (state, { payload }: PayloadAction<UsersActionPayloads['setUsers']>) => {           
+            return {
+                ...state,
+                ...payload,
+            }
+        },
+        setVisitedUserId: (state, { payload }: PayloadAction<UsersActionPayloads['setVisitedUserId']>) => {
+            state.visitedUserId = payload
         },
         setUserOptions: (state, { payload }: PayloadAction<UsersActionPayloads['setUserOptions']>) => {
             state.byId[payload.id] = {
@@ -34,9 +40,15 @@ export const usersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(
+                getUsersAsync.pending, 
+                (state, action) => {
+                    state.isPending = true
+                }
+            )
+            .addCase(
                 getUsersAsync.fulfilled, 
                 (state, action) => {
-                    
+                    state.isPending = false
                 }
             )
             .addCase(
@@ -60,6 +72,6 @@ export const usersSlice = createSlice({
 })
 
 
-export const { setUsers, setUserOptions } = usersSlice.actions
+export const { setUsers, setVisitedUserId, setUserOptions } = usersSlice.actions
 
 export default usersSlice.reducer

@@ -1,18 +1,21 @@
-import { User, UsersActionPayloads, UsersSlice } from "store/users/types";
+import { User, UsersActionPayloads } from "store/users/types";
 import { GetUsersResponse, SetUserOptionsResponse, UserResponse } from "./types";
 
 export const processGetUsers = (response: GetUsersResponse): UsersActionPayloads['setUsers'] => {
+    const initial: UsersActionPayloads['setUsers']  = {
+        byId: {},
+        allIds: [],
+        visitedUserId: '',
+    }
+
     const processed = response.reduce(
-        (acc: UsersSlice, user) => {
+        (acc, user) => {
             const processedUser = processUser(user)
             acc.byId[user.id] = processedUser
             acc.allIds.push(processedUser.id)
             return acc
         },
-        {
-            byId: {},
-            allIds: []
-        }
+        initial
     )
 
     return processed

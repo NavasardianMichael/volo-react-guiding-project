@@ -3,11 +3,9 @@ import { Header } from 'layouts/header/main'
 import { Outlet } from 'react-router-dom'
 import styles from './styles.module.css'
 
-type Props = {
-  
-}
+type Props = {}
 
-export const WithHeader: FC<Props> = ({  }) => {
+export const OutletWithHeader: FC<Props> = () => {
   return (
     <div className={styles.withHeader}>
       <Header />

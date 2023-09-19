@@ -26,7 +26,7 @@ export const getUserAsync = createAppAsyncThunk(
     ) => {
         try {
             const data = await getUser(params);
-            dispatch(setUsers(data));
+            dispatch(setUserOptions(data));
 
             return data;
         } catch (e) {
