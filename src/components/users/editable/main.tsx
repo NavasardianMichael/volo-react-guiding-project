@@ -1,10 +1,4 @@
-import {
-  ChangeEventHandler,
-  FC,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from 'react'
+import { ChangeEventHandler, FC, FormEventHandler, useEffect, useState } from 'react'
 import { selectVisitedUser, selectVisitedUserId } from 'store/users/selectors'
 import { setVisitedUserId } from 'store/users/slice'
 import { getUserAsync, setUserOptionsAsync } from 'store/users/thunks'
@@ -52,9 +46,7 @@ export const EditableUser: FC<Props> = () => {
     }
   }, [dispatch])
 
-  const handleChange = (
-    fieldName: keyof Omit<UserType, 'id'>
-  ): ChangeEventHandler<HTMLInputElement> => {
+  const handleChange = (fieldName: keyof Omit<UserType, 'id'>): ChangeEventHandler<HTMLInputElement> => {
     return (e) => {
       setValues((prev) => ({
         ...prev,
@@ -79,19 +71,11 @@ export const EditableUser: FC<Props> = () => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formControl}>
           <label htmlFor="user-name">Name</label>
-          <input
-            id="user-name"
-            value={values.name}
-            onChange={handleChange('name')}
-          />
+          <input id="user-name" value={values.name} onChange={handleChange('name')} />
         </div>
         <div className={styles.formControl}>
           <label htmlFor="user-email">Email</label>
-          <input
-            id="user-email"
-            value={values.email}
-            onChange={handleChange('email')}
-          />
+          <input id="user-email" value={values.email} onChange={handleChange('email')} />
         </div>
         <button type="submit">Save</button>
       </form>

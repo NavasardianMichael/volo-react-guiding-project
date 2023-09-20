@@ -21,25 +21,16 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers: (
-      state,
-      { payload }: PayloadAction<UsersActionPayloads['setUsers']>
-    ) => {
+    setUsers: (state, { payload }: PayloadAction<UsersActionPayloads['setUsers']>) => {
       return {
         ...state,
         ...payload,
       }
     },
-    setVisitedUserId: (
-      state,
-      { payload }: PayloadAction<UsersActionPayloads['setVisitedUserId']>
-    ) => {
+    setVisitedUserId: (state, { payload }: PayloadAction<UsersActionPayloads['setVisitedUserId']>) => {
       state.visitedUserId = payload
     },
-    setUserOptions: (
-      state,
-      { payload }: PayloadAction<UsersActionPayloads['setUserOptions']>
-    ) => {
+    setUserOptions: (state, { payload }: PayloadAction<UsersActionPayloads['setUserOptions']>) => {
       state.byId[payload.id] = {
         ...state.byId[payload.id],
         ...payload,

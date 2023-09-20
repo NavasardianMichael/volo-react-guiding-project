@@ -1,17 +1,16 @@
-import { FC } from 'react'
-import { StoreProvider } from 'store/main'
-import { ThemeContextProvider } from 'contexts/theme/Provider'
+import { FC, useContext } from 'react'
+import { THEME_TYPES } from 'constants/theme'
+import { ThemeContext } from 'contexts/theme/context'
 import { Router } from 'routes/RouterProvider'
-import styles from './app.module.css'
+import { combineClassNames } from 'utils/styles'
+import './app.css'
 
 export const App: FC = () => {
+  const { theme } = useContext(ThemeContext)
+
   return (
-    <div className={styles.app}>
-      <ThemeContextProvider>
-        <StoreProvider>
-          <Router />
-        </StoreProvider>
-      </ThemeContextProvider>
+    <div className={combineClassNames('app', THEME_TYPES[theme])}>
+      <Router />
     </div>
   )
 }

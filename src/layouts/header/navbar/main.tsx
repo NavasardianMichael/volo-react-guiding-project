@@ -9,16 +9,10 @@ type Props = {}
 export const Navbar: FC<Props> = () => {
   return (
     <div className={styles.navbar}>
-      <NavLink
-        to={ROUTES.home}
-        className={combineWithNavLinkActiveClassName(styles.active, 'link')}
-      >
+      <NavLink to={ROUTES.home} className={combineWithNavLinkActiveClassName(styles.active, 'link')}>
         Home
       </NavLink>
-      <NavLink
-        to={ROUTES.users}
-        className={combineWithNavLinkActiveClassName(styles.active, 'link')}
-      >
+      <NavLink to={ROUTES.users} className={combineWithNavLinkActiveClassName(styles.active, 'link')}>
         Users
       </NavLink>
     </div>

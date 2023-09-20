@@ -1,5 +1,3 @@
 import { NavLinkProps } from 'react-router-dom'
 
-export type GetNavLinkActiveClassName = (
-  ...list: string[]
-) => NavLinkProps['className']
+export type CombineWithNavLinkActiveClassName = (...list: string[]) => NavLinkProps['className']

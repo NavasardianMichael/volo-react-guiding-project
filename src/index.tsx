@@ -5,12 +5,18 @@ import 'styles/commons.css'
 import 'styles/variables.css'
 import reportWebVitals from './reportWebVitals'
 import './index.css'
+import { ThemeContextProvider } from 'contexts/theme/Provider'
+import { StoreProvider } from 'store/main'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeContextProvider>
+      <StoreProvider>
+        <App />
+      </StoreProvider>
+    </ThemeContextProvider>
   </React.StrictMode>
 )
 

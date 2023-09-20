@@ -1,9 +1,7 @@
 import { User, UsersActionPayloads } from 'store/users/types'
 import { GetUsersResponse, SetUserOptionsResponse, UserResponse } from './types'
 
-export const processGetUsers = (
-  response: GetUsersResponse
-): UsersActionPayloads['setUsers'] => {
+export const processGetUsers = (response: GetUsersResponse): UsersActionPayloads['setUsers'] => {
   const initial: UsersActionPayloads['setUsers'] = {
     byId: {},
     allIds: [],
@@ -20,15 +18,11 @@ export const processGetUsers = (
   return processed
 }
 
-export const processSetUserOptions = (
-  response: SetUserOptionsResponse
-): UsersActionPayloads['setUserOptions'] => {
+export const processSetUserOptions = (response: SetUserOptionsResponse): UsersActionPayloads['setUserOptions'] => {
   return processUserPartially(response)
 }
 
-const processUserPartially = (
-  response: SetUserOptionsResponse
-): UsersActionPayloads['setUserOptions'] => {
+const processUserPartially = (response: SetUserOptionsResponse): UsersActionPayloads['setUserOptions'] => {
   const processed: UsersActionPayloads['setUserOptions'] = {
     id: response.id.toString(),
   }

@@ -10,10 +10,7 @@ type Props = {
 
 export const ReadOnlyUser: FC<Props> = ({ data }) => {
   return (
-    <Link
-      className={combineClassNames(styles.readOnlyUser, 'link')}
-      to={data.id}
-    >
+    <Link className={combineClassNames(styles.readOnlyUser, 'link')} to={data.id}>
       {data.name}
     </Link>
   )

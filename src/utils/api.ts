@@ -9,9 +9,7 @@ export const appFetch = async <ExpectedResponse>({
   queryParams,
   params,
 }: FetchArgs): Promise<ExpectedResponse> => {
-  const combinedQueryParams = queryParams
-    ? Object.entries(queryParams).map(([key, value]) => `${key}=${value}`)
-    : ''
+  const combinedQueryParams = queryParams ? Object.entries(queryParams).map(([key, value]) => `${key}=${value}`) : ''
 
   const response = await fetch(url + combinedQueryParams, params)
 

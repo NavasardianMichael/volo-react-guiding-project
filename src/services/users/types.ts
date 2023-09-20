@@ -2,8 +2,7 @@ export type GetUsersResponse = UserResponse[]
 
 export type GetUserResponse = UserResponse
 
-export type SetUserOptionsResponse = Pick<UserResponse, 'id'> &
-  Partial<UserResponse>
+export type SetUserOptionsResponse = Pick<UserResponse, 'id'> & Partial<UserResponse>
 
 export type UserResponse = {
   id: number
