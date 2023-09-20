@@ -1,6 +1,6 @@
 import { FC } from 'react'
+import { ReactComponent as Spinner } from 'assets/images/spinner.svg'
 import styles from './styles.module.css'
-import {ReactComponent as Spinner} from 'assets/images/spinner.svg'
 
 type Props = {}
 

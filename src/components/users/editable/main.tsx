@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from 'react'
-import styles from './styles.module.css'
 import { selectVisitedUser, selectVisitedUserId } from 'store/users/selectors'
 import { setVisitedUserId } from 'store/users/slice'
 import { getUserAsync, setUserOptionsAsync } from 'store/users/thunks'
@@ -13,6 +12,7 @@ import { User as UserType } from 'store/users/types'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useUserIdFromPath } from 'hooks/useUserIdFromPath'
+import styles from './styles.module.css'
 
 type Props = {}
 

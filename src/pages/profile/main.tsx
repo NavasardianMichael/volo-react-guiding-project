@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import styles from './styles.module.css'
 import { EditableUser } from 'components/users/editable/main'
+import styles from './styles.module.css'
 
 type Props = {}
 

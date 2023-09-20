@@ -1,9 +1,9 @@
-import { FC, lazy } from 'react';
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Error } from 'components/error/main';
-import { OutletWithHeader } from 'layouts/outletWithHeader/main';
-import { WithSuspense } from './WithSuspense';
-import { ROUTES } from './routes';
+import { FC, lazy } from 'react'
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { OutletWithHeader } from 'layouts/outletWithHeader/main'
+import { Error } from 'components/error/main'
+import { WithSuspense } from './WithSuspense'
+import { ROUTES } from './routes'
 
 const IntroPage = WithSuspense(lazy(() => import('pages/intro/main')))
 const UsersPage = WithSuspense(lazy(() => import('pages/users/main')))
@@ -18,11 +18,11 @@ export const Router: FC = () => {
       children: [
         {
           index: true,
-          element: IntroPage
+          element: IntroPage,
         },
         {
           path: ROUTES.users,
-          element: UsersPage
+          element: UsersPage,
         },
         {
           path: ROUTES.userProfile,
@@ -30,10 +30,10 @@ export const Router: FC = () => {
         },
         {
           path: '*',
-          element: <Navigate to='/' />
+          element: <Navigate to="/" />,
         },
       ],
     },
-  ]);
-  return <RouterProvider router={router} />;
+  ])
+  return <RouterProvider router={router} />
 }

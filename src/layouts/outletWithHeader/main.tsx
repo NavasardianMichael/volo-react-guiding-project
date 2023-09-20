@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Header } from 'layouts/header/main'
 import { Outlet } from 'react-router-dom'
+import { Header } from 'layouts/header/main'
 import styles from './styles.module.css'
 
 type Props = {}
