@@ -1,5 +1,5 @@
 import { FC, LazyExoticComponent, Suspense } from 'react'
-import { Loader } from 'components/shared/loader/main'
+import { Loader } from 'components/ui/loader'
 
 export const WithSuspense = (Component: LazyExoticComponent<FC>) => {
   return (

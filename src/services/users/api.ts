@@ -5,7 +5,7 @@ import { GetUserResponse, GetUsersResponse, SetUserOptionsResponse } from './typ
 
 export const getUsers = async () => {
   const response = await appFetch<GetUsersResponse>({
-    url: `https://jsonplaceholder.typicode.com/users`,
+    url: `${process.env.REACT_APP_URL_BASE}/users`,
   })
   const processed = processGetUsers(response)
 
@@ -14,7 +14,7 @@ export const getUsers = async () => {
 
 export const getUser = async ({ id }: Pick<User, 'id'>) => {
   const response = await appFetch<GetUserResponse>({
-    url: `https://jsonplaceholder.typicode.com/users/${id}`,
+    url: `${process.env.REACT_APP_URL_BASE}users/${id}`,
   })
 
   const processed = processUser(response)
@@ -24,7 +24,7 @@ export const getUser = async ({ id }: Pick<User, 'id'>) => {
 
 export const putUserOptions = async (options: Pick<User, 'id'> & Partial<User>) => {
   const response = await appFetch<SetUserOptionsResponse>({
-    url: `https://jsonplaceholder.typicode.com/users/${options.id}`,
+    url: `${process.env.REACT_APP_URL_BASE}/users/${options.id}`,
     params: {
       method: 'PUT',
       body: JSON.stringify(options),

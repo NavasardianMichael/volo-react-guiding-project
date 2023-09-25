@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { UsersList } from 'components/users/list/main'
+import { UsersList } from 'components/users/list'
 import styles from './styles.module.css'
 
 type Props = {}

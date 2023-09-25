@@ -6,7 +6,7 @@ import 'styles/variables.css'
 import reportWebVitals from './reportWebVitals'
 import './index.css'
 import { ThemeContextProvider } from 'contexts/theme/Provider'
-import { StoreProvider } from 'store/main'
+import { StoreProvider } from 'store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

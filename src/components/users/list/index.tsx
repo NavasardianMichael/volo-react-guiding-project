@@ -3,8 +3,8 @@ import { selectUsers } from 'store/users/selectors'
 import { getUsersAsync } from 'store/users/thunks'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
-import { Loader } from 'components/shared/loader/main'
-import { ReadOnlyUser } from '../readOnly/main'
+import { Loader } from 'components/ui/loader'
+import { ReadOnlyUser } from '../readOnly'
 import styles from './styles.module.css'
 
 type Props = {}

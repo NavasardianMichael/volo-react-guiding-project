@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Navbar } from './navbar/main'
-import { ThemeHandler } from './themeHandler/main'
+import { Navbar } from './navbar'
+import { ThemeHandler } from './themeHandler'
 import styles from './styles.module.css'
 
 type Props = {}
